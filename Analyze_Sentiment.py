@@ -35,33 +35,6 @@ stop.remove('to')
 
 # In[3]:
 
-
-# CNBC news article's scrapper
-import requests 
-from bs4 import BeautifulSoup
-
-def extract_article (url):
-    # request for article web page
-    req = requests.get(url) 
-
-    # extract html data using the 'lxml' parser  
-    soup = BeautifulSoup(req.content, 'lxml')
-
-    # extract news article's headline  
-    headline = soup.find('h1', class_="ArticleHeader-headline").text
-
-    # extract news description
-    description = ''
-    news_desc = soup.find_all('div', class_="group")
-    for desc in news_desc:
-        description = description + desc.text
-
-    return headline, description
-
-document = extract_article("https://www.cnbc.com/2020/05/22/coronavirus-goldman-sachs-on-india-growth-gdp-forecast.html")
-
-
-
 def nltk_process(document):
     document = " ".join([i for i in document.split() if i not in stop])
     sentences = nltk.sent_tokenize(document)
@@ -317,7 +290,7 @@ def make_news_output_format(subsector_to_polarity, company_to_polarity, df):
         
     return news_output
 
-output_data = find_subsector_company_sentiment_json_format(document)  
+# output_data = find_subsector_company_sentiment_json_format(document)  
 
 
 # In[44]:

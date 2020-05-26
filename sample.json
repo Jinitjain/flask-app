@@ -1,0 +1,304 @@
+{
+    "news": [
+      {
+        "_type": "NewsArticle",
+        "name": "Ark Invest CEO: Why we've sold Tesla despite our long-term bull case",
+        "url": "https://www.cnbc.com/2020/05/22/ark-invest-ceo-why-weve-sold-tesla-despite-our-long-term-bull-case.html",
+        "image": {
+          "_type": "ImageObject",
+          "thumbnail": {
+            "_type": "ImageObject",
+            "contentUrl": "https://www.bing.com/th?id=ON.F9F977AF15590FF6CE99A1D81C11244E&pid=News",
+            "width": 700,
+            "height": 466
+          }
+        },
+        "description": "Ark Invest, the firm known for its $7,000 price target on the stock of Tesla, has faced some disbelief for selling shares of the electric auto maker.",
+        "provider": [
+          {
+            "_type": "Organization",
+            "name": "CNBC",
+            "image": {
+              "_type": "ImageObject",
+              "thumbnail": {
+                "_type": "ImageObject",
+                "contentUrl": "https://www.bing.com/th?id=AR_4efc5b36002beed4d9e08a53512d7e9e&pid=news"
+              }
+            }
+          }
+        ],
+        "datePublished": "2020-05-23T05:52:00.0000000Z",
+        "category": "Business"
+      },
+      {
+        "_type": "NewsArticle",
+        "name": "Tim Cook, LeBron James and 7 other famous people share their best advice for the class of 2020",
+        "url": "https://www.cnbc.com/2020/05/22/tim-cook-lebron-james-share-advice-for-the-class-of-2020.html",
+        "image": {
+          "_type": "ImageObject",
+          "thumbnail": {
+            "_type": "ImageObject",
+            "contentUrl": "https://www.bing.com/th?id=ON.C161B248D897C6BA8CDDF491C23AD565&pid=News",
+            "width": 700,
+            "height": 466
+          }
+        },
+        "description": "As a result of the ongoing coronavirus pandemic, graduation ceremonies across the U.S. have been canceled. But celebrities, athletes and business leaders have joined virtual graduations to offer encouragement and advice to the Class of 2020.",
+        "provider": [
+          {
+            "_type": "Organization",
+            "name": "CNBC",
+            "image": {
+              "_type": "ImageObject",
+              "thumbnail": {
+                "_type": "ImageObject",
+                "contentUrl": "https://www.bing.com/th?id=AR_4efc5b36002beed4d9e08a53512d7e9e&pid=news"
+              }
+            }
+          }
+        ],
+        "datePublished": "2020-05-23T05:57:00.0000000Z",
+        "category": "LifeStyle"
+      },
+      {
+        "_type": "NewsArticle",
+        "name": "Market could get a boost as states reopen, but new economic data will show just how bad things got during shutdowns",
+        "url": "https://www.cnbc.com/2020/05/22/market-could-get-a-boost-as-states-reopen-but-new-economic-data-will-show-just-how-bad-things-got-during-shutdowns.html",
+        "image": {
+          "_type": "ImageObject",
+          "thumbnail": {
+            "_type": "ImageObject",
+            "contentUrl": "https://www.bing.com/th?id=ON.768FE2D3FC87832A1501CDB74D679212&pid=News",
+            "width": 700,
+            "height": 525
+          }
+        },
+        "description": "Stocks are hanging on every medical development as well as state reopenings, but key data should show how bad things got during shutdowns.",
+        "provider": [
+          {
+            "_type": "Organization",
+            "name": "CNBC",
+            "image": {
+              "_type": "ImageObject",
+              "thumbnail": {
+                "_type": "ImageObject",
+                "contentUrl": "https://www.bing.com/th?id=AR_4efc5b36002beed4d9e08a53512d7e9e&pid=news"
+              }
+            }
+          }
+        ],
+        "datePublished": "2020-05-23T04:46:00.0000000Z",
+        "category": "Business"
+      },
+      {
+        "_type": "NewsArticle",
+        "name": "Georgia is gearing up to resume TV and film production. Here are the guidelines for people on set",
+        "url": "https://www.cnbc.com/2020/05/22/coronavirus-recovery-georgia-guidelines-to-resume-filming-production.html",
+        "image": {
+          "_type": "ImageObject",
+          "thumbnail": {
+            "_type": "ImageObject",
+            "contentUrl": "https://www.bing.com/th?id=ON.EABC3920FDE4555D6AE2EB523C644738&pid=News",
+            "width": 700,
+            "height": 466
+          }
+        },
+        "description": "Georgia is eager to restart its lucrative TV and film production industry. On Friday it became the first state to release safety guidelines for shooting within the state.",
+        "provider": [
+          {
+            "_type": "Organization",
+            "name": "CNBC",
+            "image": {
+              "_type": "ImageObject",
+              "thumbnail": {
+                "_type": "ImageObject",
+                "contentUrl": "https://www.bing.com/th?id=AR_4efc5b36002beed4d9e08a53512d7e9e&pid=news"
+              }
+            }
+          }
+        ],
+        "datePublished": "2020-05-23T05:22:00.0000000Z",
+        "category": "LifeStyle"
+      },
+      {
+        "_type": "NewsArticle",
+        "name": "Jeff Bezos to exec after product totally flopped: 'You can't, for one minute, feel bad'",
+        "url": "https://www.cnbc.com/2020/05/22/jeff-bezos-why-you-cant-feel-bad-about-failure.html",
+        "image": {
+          "_type": "ImageObject",
+          "thumbnail": {
+            "_type": "ImageObject",
+            "contentUrl": "https://www.bing.com/th?id=ON.E51B934A99750627E683EB24CC743D01&pid=News",
+            "width": 700,
+            "height": 465
+          }
+        },
+        "description": "Amazon's Fire Phone has secured its place in the canon of insurmountable business flops. But Jeff Bezos didn't dwell on the failure, demonstrating a key lesson about his success as an entrepreneur and leader.",
+        "provider": [
+          {
+            "_type": "Organization",
+            "name": "CNBC",
+            "image": {
+              "_type": "ImageObject",
+              "thumbnail": {
+                "_type": "ImageObject",
+                "contentUrl": "https://www.bing.com/th?id=AR_4efc5b36002beed4d9e08a53512d7e9e&pid=news"
+              }
+            }
+          }
+        ],
+        "datePublished": "2020-05-23T04:11:00.0000000Z",
+        "category": "ScienceAndTechnology"
+      },
+      {
+        "_type": "NewsArticle",
+        "name": "Twitter billionaire Jack Dorsey: Automation will even put tech jobs in jeopardy",
+        "url": "https://www.cnbc.com/2020/05/22/jack-dorsey-ai-will-jeopardize-entry-level-software-engineer-jobs.html",
+        "image": {
+          "_type": "ImageObject",
+          "thumbnail": {
+            "_type": "ImageObject",
+            "contentUrl": "https://www.bing.com/th?id=ON.761E2C314F942BD660916F4666E83609&pid=News",
+            "width": 594,
+            "height": 396
+          }
+        },
+        "description": "Artificial intelligence will soon write its own software, according to Twitter and Square CEO Jack Dorsey. \"We talk a lot about the self-driving trucks and whatnot\" but automation \"is even coming for programming\" jobs,",
+        "provider": [
+          {
+            "_type": "Organization",
+            "name": "CNBC",
+            "image": {
+              "_type": "ImageObject",
+              "thumbnail": {
+                "_type": "ImageObject",
+                "contentUrl": "https://www.bing.com/th?id=AR_4efc5b36002beed4d9e08a53512d7e9e&pid=news"
+              }
+            }
+          }
+        ],
+        "datePublished": "2020-05-23T04:46:00.0000000Z",
+        "category": "ScienceAndTechnology"
+      },
+      {
+        "_type": "NewsArticle",
+        "name": "Here's what happened to the stock market on Friday",
+        "url": "https://www.cnbc.com/2020/05/22/what-happened-to-the-stock-market-friday-best-week-for-dow-since-april.html",
+        "image": {
+          "_type": "ImageObject",
+          "thumbnail": {
+            "_type": "ImageObject",
+            "contentUrl": "https://www.bing.com/th?id=ON.60F5C8EC949AC380D54557A52AB14CC4&pid=News",
+            "width": 700,
+            "height": 466
+          }
+        },
+        "description": "Chevron shares fell 1.91% on Friday and was among the worst-performing Dow stocks. Caterpillar and JPMorgan Chase slid 1.39% and 0.78, respectively. U.S. markets will be closed on Monday for the Memorial Day holiday.",
+        "provider": [
+          {
+            "_type": "Organization",
+            "name": "CNBC",
+            "image": {
+              "_type": "ImageObject",
+              "thumbnail": {
+                "_type": "ImageObject",
+                "contentUrl": "https://www.bing.com/th?id=AR_4efc5b36002beed4d9e08a53512d7e9e&pid=news"
+              }
+            }
+          }
+        ],
+        "datePublished": "2020-05-23T05:12:00.0000000Z",
+        "category": "Business"
+      },
+      {
+        "_type": "NewsArticle",
+        "name": "Gamblers pivot to stock trading during lockdowns - Barstool's Portnoy revives old E-Trade account",
+        "url": "https://www.cnbc.com/2020/05/22/gamblers-pivot-to-stock-trading-during-lockdowns---barstools-portnoy-revives-old-e-trade-account.html",
+        "image": {
+          "_type": "ImageObject",
+          "thumbnail": {
+            "_type": "ImageObject",
+            "contentUrl": "https://www.bing.com/th?id=ON.4644A0F52A082335F8B2606D016B30A4&pid=News",
+            "width": 700,
+            "height": 466
+          }
+        },
+        "description": "Some people are dipping into stocks as an outlet for competition and betting as professional sports are on hold due to Covid-19.",
+        "provider": [
+          {
+            "_type": "Organization",
+            "name": "CNBC",
+            "image": {
+              "_type": "ImageObject",
+              "thumbnail": {
+                "_type": "ImageObject",
+                "contentUrl": "https://www.bing.com/th?id=AR_4efc5b36002beed4d9e08a53512d7e9e&pid=news"
+              }
+            }
+          }
+        ],
+        "datePublished": "2020-05-23T05:22:00.0000000Z",
+        "category": "Business"
+      },
+      {
+        "_type": "NewsArticle",
+        "name": "Trump administration warms up to sending out more coronavirus relief money",
+        "url": "https://www.cnbc.com/2020/05/22/coronavirus-stimulus-trump-wants-to-send-out-more-relief-money.html",
+        "image": {
+          "_type": "ImageObject",
+          "thumbnail": {
+            "_type": "ImageObject",
+            "contentUrl": "https://www.bing.com/th?id=ON.4ADD13772B67CEF5252E24E9707E4584&pid=News",
+            "width": 700,
+            "height": 466
+          }
+        },
+        "description": "President Donald Trump, advisor Kevin Hassett and Treasury Secretary Steven Mnuchin all say more coronavirus stimulus could be coming.",
+        "provider": [
+          {
+            "_type": "Organization",
+            "name": "CNBC",
+            "image": {
+              "_type": "ImageObject",
+              "thumbnail": {
+                "_type": "ImageObject",
+                "contentUrl": "https://www.bing.com/th?id=AR_4efc5b36002beed4d9e08a53512d7e9e&pid=news"
+              }
+            }
+          }
+        ],
+        "datePublished": "2020-05-23T04:33:00.0000000Z",
+        "category": "Politics"
+      },
+      {
+        "_type": "NewsArticle",
+        "name": "This is the average coronavirus stimulus payment in your state",
+        "url": "https://www.cnbc.com/2020/05/22/this-is-the-average-coronavirus-stimulus-payment-in-your-state.html",
+        "image": {
+          "_type": "ImageObject",
+          "thumbnail": {
+            "_type": "ImageObject",
+            "contentUrl": "https://www.bing.com/th?id=ON.6882E5CFC63ED5E08E000172936DF736&pid=News",
+            "width": 700,
+            "height": 466
+          }
+        },
+        "description": "In the last six weeks, the Treasury Department and IRS have distributed more than $257.9 billion in stimulus payments to more than 152 million individuals. Here's the average check received in each state.",
+        "provider": [
+          {
+            "_type": "Organization",
+            "name": "CNBC",
+            "image": {
+              "_type": "ImageObject",
+              "thumbnail": {
+                "_type": "ImageObject",
+                "contentUrl": "https://www.bing.com/th?id=AR_4efc5b36002beed4d9e08a53512d7e9e&pid=news"
+              }
+            }
+          }
+        ],
+        "datePublished": "2020-05-23T04:11:00.0000000Z",
+        "category": "Business"
+      }
+    ]
+  }
