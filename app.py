@@ -29,6 +29,7 @@ class extract_relation(Resource):
             sentiment = {}
             try:
                 article = extract_article(url)
+                print(article)
                 sentiment = analyze_sentiment.find_subsector_company_sentiment_json_format(article)
                 print(sentiment)
             except Exception:
