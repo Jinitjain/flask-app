@@ -16,6 +16,7 @@ def extract_article (url):
     for para in paras:
         news_article = news_article + para.text
 
+    print(news_article)
     return news_article
 
 if __name__ == "__main__":
