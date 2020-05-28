@@ -23,11 +23,11 @@ def extract_article (url):
     except Exception:
         return 'jinit ki maa ka bhosda'
 
-    for para in paras:
-        try:
+    try:
+        for para in paras:
             news_article = news_article + para.text
-        except Exception:
-            return 'Jinit ki maa ki ...'
+    except Exception:
+        return 'Jinit ki maa ki ...'
 
     print(news_article)
     return news_article
