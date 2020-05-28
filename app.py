@@ -31,7 +31,7 @@ class extract_relation(Resource):
                 print(article)
            
             except Exception as e:
-                return jsonify({"error": "fuck chuka hai", "msg": str(e.message)})
+                return jsonify({"error": "fuck chuka hai"})
             # sentiment = analyze_sentiment.find_subsector_company_sentiment_json_format(a, b, c, article)
             # print(sentiment)
             # response["relations"].append({"name": article,
@@ -41,7 +41,7 @@ class extract_relation(Resource):
             
         # print(a, b, c, article)
         # return jsonify(response) 
-        return jsonify({"success": article})
+        return jsonify({"success": "hein"})
   
 # adding the defined resources along with their corresponding urls 
 api.add_resource(extract_relation, '/extract-relation') 
