@@ -32,15 +32,16 @@ class extract_relation(Resource):
            
             except Exception:
                 pass
-            sentiment = analyze_sentiment.find_subsector_company_sentiment_json_format(a, b, c, article)
-            print(sentiment)
-            response["relations"].append({"name": article,
-                                          "url": url,
-                                          "sentiment": sentiment,
-                                          "article": article})
+            # sentiment = analyze_sentiment.find_subsector_company_sentiment_json_format(a, b, c, article)
+            # print(sentiment)
+            # response["relations"].append({"name": article,
+            #                               "url": url,
+            #                               "sentiment": sentiment,
+            #                               "article": article})
             
 
-        return jsonify(response) 
+        # return jsonify(response) 
+        return jsonify({"success": "chutzpah"})
   
 # adding the defined resources along with their corresponding urls 
 api.add_resource(extract_relation, '/extract-relation') 
