@@ -10,11 +10,11 @@ def extract_article (url):
     soup = BeautifulSoup(req.content, 'lxml')
 
     # extract news article
-    news_article = ''
-    paras = soup.find_all('p')
+    news_article = 'bhai soup mast hai'
+    # paras = soup.find_all('p')
 
-    for para in paras:
-        news_article = news_article + para.text
+    # for para in paras:
+    #     news_article = news_article + para.text
 
     print(news_article)
     return news_article
