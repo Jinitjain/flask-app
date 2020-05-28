@@ -20,10 +20,6 @@ def extract_article (url):
 
     try:
         paras = soup.find_all('p')
-    except Exception:
-        return 'jinit ki maa ka bhosda'
-
-    try:
         for para in paras:
             news_article = news_article + para.text
     except Exception:
