@@ -31,7 +31,7 @@ class extract_relation(Resource):
                 print(article)
            
             except Exception as e:
-                return jsonify({"error": "fuck chuka hai"})
+                return jsonify({"error": "fuck chuka hai", 'msg': e})
             # sentiment = analyze_sentiment.find_subsector_company_sentiment_json_format(a, b, c, article)
             # print(sentiment)
             # response["relations"].append({"name": article,
