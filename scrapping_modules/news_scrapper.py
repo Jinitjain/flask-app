@@ -4,13 +4,19 @@ from bs4 import BeautifulSoup
 
 def extract_article (url):
     # request for article web page
-    req = requests.get(url) 
+    try:
+        req = requests.get(url) 
+    except Exception:
+        'bhai request bhi nahi kiya'
 
     # extract html data using the 'lxml' parser  
-    soup = BeautifulSoup(req.content, 'lxml')
+    try:
+        soup = BeautifulSoup(req.content, 'lxml')
+    except Exception:
+        return 'soup bohot chutiya hai'
 
     # extract news article
-    news_article = 'bhai soup mast hai'
+    news_article = ''
     # paras = soup.find_all('p')
 
     # for para in paras:
