@@ -17,10 +17,17 @@ def extract_article (url):
 
     # extract news article
     news_article = ''
-    # paras = soup.find_all('p')
 
-    # for para in paras:
-    #     news_article = news_article + para.text
+    try:
+        paras = soup.find_all('p')
+    except Exception:
+        return 'jinit ki maa ka bhosda'
+
+    for para in paras:
+        try:
+            news_article = news_article + para.text
+        except Exception:
+            return 'Jinit ki maa ki ...'
 
     print(news_article)
     return news_article
