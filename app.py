@@ -39,7 +39,7 @@ class extract_relation(Resource):
             #                               "sentiment": sentiment,
             #                               "article": article})
             
-        print(a, b, c, article)
+        # print(a, b, c, article)
         # return jsonify(response) 
         return jsonify({"success": article})
   
