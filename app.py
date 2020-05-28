@@ -26,22 +26,24 @@ class extract_relation(Resource):
             url = news_article["url"]
             print(url)
             sentiment = {}
+            article = ""
             try:
                 article = extract_article(url)
                 print(article)
            
             except Exception as e:
-                return jsonify({"error": "fuck chuka hai", 'msg': e})
-            # sentiment = analyze_sentiment.find_subsector_company_sentiment_json_format(a, b, c, article)
-            # print(sentiment)
-            # response["relations"].append({"name": article,
-            #                               "url": url,
-            #                               "sentiment": sentiment,
-            #                               "article": article})
+                print('fuckoff')
+                # return jsonify({"error": "fuck chuka hai"})
+            sentiment = analyze_sentiment.find_subsector_company_sentiment_json_format(a, b, c, article)
+            print(sentiment)
+            response["relations"].append({"name": article,
+                                          "url": url,
+                                          "sentiment": sentiment,
+                                          "article": article})
             
         # print(a, b, c, article)
-        # return jsonify(response) 
-        return jsonify({"success": "hein"})
+        return jsonify(response) 
+        # return jsonify({"success": "hein"})
   
 # adding the defined resources along with their corresponding urls 
 api.add_resource(extract_relation, '/extract-relation') 
