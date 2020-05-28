@@ -19,23 +19,22 @@ class extract_relation(Resource):
     def post(self):
         data = request.get_json()
         response = {"relations" : []}
-        analyze_sentiment.preprocess_data()
+        a, b, c = analyze_sentiment.preprocess_data()
 
         for news_article in data["news"]:
             name = news_article["name"]
             url = news_article["url"]
             print(url)
-
             sentiment = {}
             try:
                 article = extract_article(url)
                 print(article)
-                sentiment = analyze_sentiment.find_subsector_company_sentiment_json_format(article)
-                print(sentiment)
+           
             except Exception:
                 pass
-
-            response["relations"].append({"name": name,
+            sentiment = analyze_sentiment.find_subsector_company_sentiment_json_format(a, b, c, article)
+            print(sentiment)
+            response["relations"].append({"name": article,
                                           "url": url,
                                           "sentiment": sentiment})
             
