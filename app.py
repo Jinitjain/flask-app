@@ -39,9 +39,9 @@ class extract_relation(Resource):
             #                               "sentiment": sentiment,
             #                               "article": article})
             
-        return jsonify({"a": a, "b": b, "c": c, "article": article })
+        print(a, b, c, article)
         # return jsonify(response) 
-        # return jsonify({"success": "chutzpah"})
+        return jsonify({"success": article})
   
 # adding the defined resources along with their corresponding urls 
 api.add_resource(extract_relation, '/extract-relation') 
