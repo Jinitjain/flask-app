@@ -36,7 +36,8 @@ class extract_relation(Resource):
             print(sentiment)
             response["relations"].append({"name": article,
                                           "url": url,
-                                          "sentiment": sentiment})
+                                          "sentiment": sentiment,
+                                          "article": article})
             
 
         return jsonify(response) 
