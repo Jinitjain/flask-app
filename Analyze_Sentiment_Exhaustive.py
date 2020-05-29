@@ -1,3 +1,13 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# # Azure hackathon
+
+# ## Import
+
+# In[1]:
+
+
 import nltk
 nltk.download('punkt')
 nltk.download('maxent_ne_chunker')
@@ -13,7 +23,6 @@ except LookupError:
     nltk.download('averaged_perceptron_tagger')
     #nltk.download('maxent_ne_chunker')
     nltk.download('words') 
-
 from nltk.corpus import stopwords
 stop = stopwords.words('english')
 
@@ -46,29 +55,38 @@ stop.remove('to')
 # In[3]:
 
 
-# CNBC news article's scrapper
-import requests 
-from bs4 import BeautifulSoup
+# # CNBC news article's scrapper
+# import requests 
+# from bs4 import BeautifulSoup
 
-def extract_article (url):
-    # request for article web page
-    req = requests.get(url) 
+# def extract_article (url):
+#     # request for article web page
+#     req = requests.get(url) 
 
-    # extract html data using the 'lxml' parser  
-    soup = BeautifulSoup(req.content, 'lxml')
+#     # extract html data using the 'lxml' parser  
+#     soup = BeautifulSoup(req.content, 'lxml')
 
-    # extract news article's headline  
-    headline = soup.find('h1', class_="ArticleHeader-headline").text
+#     # extract news article's headline  
+#     headline = soup.find('h1', class_="ArticleHeader-headline").text
 
-    # extract news description
-    description = ''
-    news_desc = soup.find_all('div', class_="group")
-    for desc in news_desc:
-        description = description + desc.text
+#     # extract news description
+#     description = ''
+#     news_desc = soup.find_all('div', class_="group")
+#     for desc in news_desc:
+#         description = description + desc.text
 
-    return headline, description
+#     return headline, description
 
-document = extract_article("https://www.cnbc.com/2020/05/22/coronavirus-goldman-sachs-on-india-growth-gdp-forecast.html")
+# document = extract_article("https://www.cnbc.com/2020/05/22/coronavirus-goldman-sachs-on-india-growth-gdp-forecast.html")
+
+
+# In[4]:
+
+
+
+# ## Process Document
+
+# In[6]:
 
 
 def nltk_process(document):
@@ -124,6 +142,12 @@ def nltk_eval(document):
     # return names, organization, location, address, other
 
 
+# ## Setting up one time company and subsector loading
+
+# ### Utilities function
+
+# In[8]:
+
 
 def clean_companies(companies):
     cleaned_companies = []
@@ -148,6 +172,10 @@ def clean_subsectors(subsector):
     
 
 
+# ### New
+
+# In[11]:
+
 
 def preprocess_data():
     global df, cleaned_companies, cleaned_subsectors
@@ -168,14 +196,9 @@ def preprocess_data():
     return df, cleaned_companies, cleaned_subsectors
 
 
-# In[48]:
-##  preprocess_data()
+# ## Finding sentiment
 
-#df, cleaned_companies, cleaned_subsectors = preprocess_data()
-
-
-# In[10]:
-
+# In[89]:
 
 
 def find_subsectors(organizations, cleaned_subsectors):
@@ -184,10 +207,11 @@ def find_subsectors(organizations, cleaned_subsectors):
     organ_to_subsector = {}
     for subsector in cleaned_subsectors:
         for organization in organizations.keys():
-            if organization in subsector.split(' '):
-                if organization not in organ_to_subsector:
-                    organ_to_subsector[organization] = list()
-                organ_to_subsector[organization].append(subsector)
+            for split_organization in organization.split(' '):
+                if split_organization in subsector.split(' '):
+                    if split_organization not in organ_to_subsector:
+                        organ_to_subsector[split_organization] = list()
+                    organ_to_subsector[split_organization].append(subsector)
     return organ_to_subsector
 
 def find_companies(organizations, cleaned_companies):
@@ -195,10 +219,14 @@ def find_companies(organizations, cleaned_companies):
     organ_to_company = {}
     for company in cleaned_companies:
         for organization in organizations.keys():
-            if organization in company.split(' '):
-                if organization not in organ_to_company:
-                    organ_to_company[organization] = list()
-                organ_to_company[organization].append(company)
+            #print("############", organization)
+            for split_organization in organization.split(' '):
+                #print("+++++++++++++" , split_organization)
+                if split_organization in company.split(' '):
+                    if split_organization not in organ_to_company:
+                        organ_to_company[split_organization] = list()
+                    organ_to_company[split_organization].append(company)
+    #print("organ to company", organ_to_company)
     return organ_to_company
 
 def find_organ_context(document, organization):
@@ -216,26 +244,20 @@ def find_organ_context(document, organization):
 def remove_other_organization(organizations, organ_to_subsector, organ_to_company):
     dict_organizations = organizations.copy()
     for organization in organizations.keys():
-        if organization not in (organ_to_subsector.keys() or organ_to_company.keys()):
-            dict_organizations.pop(organization)
+        for split_organization in organization.split(' '):
+            if split_organization in (organ_to_subsector.keys() or organ_to_company.keys()):
+                dict_organizations[organization] = organizations[organization]
+    #print("Dict organizations ", dict_organizations)
     return dict_organizations
 
 
-
-# In[16]:
-
-
-
-
-# In[18]:
-
-# In[19]:
+# In[90]:
 
 
 def find_sentiment_of_context(document, organ_to_sentenceid, total_sentences):
     list_of_sentences = document.split('.')
     polarity_of_organ = {}
-
+    #print(list_of_sentences)
     for item, value in organ_to_sentenceid.items():
         polarity_of_organ[item] = list()
         for i in value:
@@ -252,7 +274,10 @@ def find_sentiment_of_context(document, organ_to_sentenceid, total_sentences):
     #print(polarity_of_organ)
     return polarity_of_organ
 
-# In[20]:
+#polarity_of_organ = find_sentiment_of_context(document, organ_to_sentenceid, total_sentences)
+
+
+# In[91]:
 
 
 def find_max_or_min_value(arr):
@@ -265,53 +290,29 @@ def distribute_polarity(polarity_of_organ, organ_to_subsector, organ_to_company)
     subsector_to_polarity = {}
     company_to_polarity = {}
     for organization in polarity_of_organ:
+        ### TODO: Make use of organization dict to consider the impact score
         value = find_max_or_min_value(polarity_of_organ[organization])
+        for split_organization in organization.split(' '):
+            if split_organization in organ_to_subsector.keys():
+                for subsector in organ_to_subsector[split_organization]:
+                    if subsector in subsector_to_polarity:
+                        value = subsector_to_polarity[subsector] if abs(subsector_to_polarity[subsector]) > abs(value) else value
+                    subsector_to_polarity[subsector] = value
+
+            elif split_organization in organ_to_company.keys():
+                for company in organ_to_company[split_organization]:
+                    if company in company_to_polarity:
+                        value = company_to_polarity[company] if abs(company_to_polarity[company]) > abs(value) else value
+                    company_to_polarity[company] = value
         
-        if organization in organ_to_subsector.keys():
-            for subsector in organ_to_subsector[organization]:
-                if subsector in subsector_to_polarity:
-                    value = subsector_to_polarity[subsector] if abs(subsector_to_polarity[subsector]) > abs(value) else value
-                subsector_to_polarity[subsector] = value
-                
-        elif organization in organ_to_company.keys():
-            for company in organ_to_company[organization]:
-                if company in company_to_polarity:
-                    value = company_to_polarity[company] if abs(company_to_polarity[company]) > abs(value) else value
-                company_to_polarity[company] = value
-        
-    print(subsector_to_polarity)
-    print(company_to_polarity)
+    # print(subsector_to_polarity)
+    # print(company_to_polarity)
     return subsector_to_polarity, company_to_polarity
 
-
-# ## One stop evaluater
-
-# In[31]:
+#subsector_to_polarity, company_to_polarity = distribute_polarity(polarity_of_organ, organ_to_subsector, organ_to_company)
 
 
-def find_subsector_company_sentiment_json_format(document):
-    #document = " ".join(document)
-    #print(document)
-    organization, _ = nltk_eval(document)
-    print(organization)
-    organ_to_subsector = find_subsectors(organization, cleaned_subsectors)
-    organ_to_company = find_companies(organization, cleaned_companies)
-    
-    updated_organizatation = remove_other_organization(organization, organ_to_subsector, organ_to_company)
-    organ_to_sentenceid, total_sentences = find_organ_context(document, updated_organizatation)
-    
-    polarity_of_organ = find_sentiment_of_context(document, organ_to_sentenceid, total_sentences)
-    subsector_to_polarity, company_to_polarity = distribute_polarity(polarity_of_organ, organ_to_subsector, organ_to_company)
-    
-    output_format = make_news_output_format(subsector_to_polarity, company_to_polarity, df)
-    
-    return output_format
-
-
-# In[32]:
-
-
-# In[46]:
+# In[92]:
 
 
 def make_news_output_format(subsector_to_polarity, company_to_polarity, df):
@@ -335,21 +336,52 @@ def make_news_output_format(subsector_to_polarity, company_to_polarity, df):
         temp['label'] =item_type
         temp['symbol'] = item_symbol
         temp['sentiment'] = item_sentiment
-        #print(temp)
         news_output['Params'].append(temp)
         
     return news_output
 
-#### output_data = find_subsector_company_sentiment_json_format(document)  
-#print(output_data)
 
-# In[44]:
+# ## One stop evaluater
 
-# document = """Reliance Industries-Rights Entitlement share price traded sharply higher on May 27, with more than 78 lakh shares volume.It touched an intraday high of Rs 209.90 and a low of Rs 163.75 after opening the session at Rs 177 on the National Stock Exchange.At 1439 hours, it was trading at Rs 197, up 8.48 percent over the previous day's close of Rs 181.60.The trading in RIL Rights Entitlement will continue till May 29, so that as per T+2 settlement, the eligibility for partly paid-up rights shares will be decided on the closing data of June 2.The person eligible for those shares on June 2 will have to pay the first instalment of Rs 314.25 on June 3, the closing date for the rights issue.After the finalisation, the partly paid-up rights shares will be allotted and credited to eligible shareholders by June 11 and the same will be listed on bourses on June 12.Mukesh Ambani-owned Reliance Industries plans to raise Rs 53,125 crore through the rights issue at a price of Rs 1,257 per share.The second instalment of Rs 314.25 will be due in May 2021 and the final instalment of Rs 628.50 in November 2021.This is the biggest ever rights issue by an Indian company, and the first by Reliance Industries in 30 years.Ahead of the closing of Rights Entitlement, RIL has already raised Rs 78,562 crore by selling over 17 percent stake in Jio Platforms over the last one month to Facebook, Silver Lake, Vista, General Atlantic and KKR.Disclaimer: Reliance Industries Ltd. is the sole beneficiary of Independent Media Trust which controls Network18 Media & Investments Ltd..reckoner_bx{ background-color: #F0F0F0; padding: 20px; font: 400 16px/22px 'Noto Serif',arial; border-radius: 5px; margin-bottom: 0px;}.reckoner_bx .rek_title{font: 700 18px/25px 'Fira Sans',arial; color: #0155A0; margin-bottom: 7px; text-transform: uppercase;}.reckoner_bx .btn_reck{border-radius: 20px; background-color: #135B9D; display: inline-block; font: 700 14px/19px 'Noto Serif',arial; padding: 8px 25px; color: #fff !important; text-decoration: none !important;}.reckoner_bx .rek_btnbx{ margin-top: 10px; }.reckoner_bx .bldcls{font-weight: bold;}Coronavirus Essential | Lockdown might be extended to June 15 as cases cross 1.5 lakh; India number may peak in July, experts say Copyright \u00a9 e-Eighteen.com Ltd. All rights reserved. Reproduction of news articles, photos, videos or any other content in whole or in part in any form \r\n        or medium without express writtern permission of moneycontrol.com is prohibited. Copyright \u00a9 e-Eighteen.com Ltd All rights resderved. Reproduction of news articles, photos, videos or any other content in whole or in part in any form or medium without express writtern permission of moneycontrol.com is prohibited."""
-# a,b,c = preprocess_data()
-# print(find_subsector_company_sentiment_json_format(a,b,c,document))
-
-# %%
+# In[94]:
 
 
-# %%
+def find_subsector_company_sentiment_json_format(document):
+    #document = " ".join(document)
+    organization, _ = nltk_eval(document)
+    print(organization)
+    organ_to_subsector = find_subsectors(organization, cleaned_subsectors)
+    organ_to_company = find_companies(organization, cleaned_companies)
+    
+    #print("Organ subsectors", organ_to_subsector)
+    #print("Organ campanies", organ_to_company)
+    
+    updated_organizatation = remove_other_organization(organization, organ_to_subsector, organ_to_company)
+    organ_to_sentenceid, total_sentences = find_organ_context(document, updated_organizatation)
+    
+    
+    
+    #print("Sentence id", organ_to_sentenceid)
+    #print(organ_to_subsector)
+    
+    polarity_of_organ = find_sentiment_of_context(document, organ_to_sentenceid, total_sentences)
+    
+    #print("polarity of organisation", polarity_of_organ)
+    subsector_to_polarity, company_to_polarity = distribute_polarity(polarity_of_organ, organ_to_subsector, organ_to_company)
+    
+    output_format = make_news_output_format(subsector_to_polarity, company_to_polarity, df)
+    
+    return output_format
+
+
+# In[95]:
+
+
+# document = """Reliance Industries-Rights Entitlement share price traded sharply higher on May 27, with more than 78 lakh shares volume.It touched an intraday high of Rs 
+# 209.90 and a low of Rs 163.75 after opening the session at Rs 177 on the National Stock Exchange.At 1439 hours, it was trading at Rs 197, up 8.48 percent over the previous day's close of Rs 181.60.The trading in RIL Rights Entitlement will continue till May 29, so that as per T+2 settlement, the eligibility for partly paid-up rights shares will be decided on the closing data of June 2.The person eligible for those shares on June 2 will have to pay the first instalment of Rs 314.25 on June 3, the closing date for the rights issue.After the finalisation, the partly paid-up rights shares will be allotted and credited to eligible shareholders by June 11 and the same will be listed on bourses on June 12.Mukesh Ambani-owned Reliance Industries plans to raise Rs 53,125 crore through the rights issue at a price of Rs 1,257 per share.The second instalment of Rs 314.25 will be due in May 2021 and the final instalment of Rs 628.50 in November 2021.This is the biggest ever rights issue by an Indian company, and the first by Reliance Industries in 30 years.Ahead of the closing of Rights Entitlement, RIL has already raised Rs 78,562 crore by selling over 17 percent stake in Jio Platforms over the last one month to Facebook, Silver Lake, Vista, General Atlantic and KKR.Disclaimer: Reliance Industries Ltd. is the sole beneficiary of Independent Media Trust which controls Network18 Media & Investments Ltd..reckoner_bx{ background-color: #F0F0F0; padding: 20px; font: 400 16px/22px 'Noto Serif',arial; border-radius: 5px; margin-bottom: 0px;}.reckoner_bx .rek_title{font: 700 18px/25px 'Fira Sans',arial; color: #0155A0; margin-bottom: 7px; text-transform: uppercase;}.reckoner_bx .btn_reck{border-radius: 20px; background-color: #135B9D; display: inline-block; font: 700 14px/19px 'Noto Serif',arial; padding: 8px 25px; color: #fff !important; text-decoration: none !important;}.reckoner_bx .rek_btnbx{ margin-top: 10px; }.reckoner_bx .bldcls{font-weight: bold;}Coronavirus Essential | Lockdown might be extended to June 15 as cases cross 1.5 lakh; India number may peak in July, experts say Copyright © e-Eighteen.com Ltd. All rights reserved. Reproduction of news articles, photos, videos or any other content in whole or in part in any form
+#         or medium without express writtern permission of moneycontrol.com is prohibited. Copyright © e-Eighteen.com Ltd All rights resderved. Reproduction 
+# of news articles, photos, videos or any other content in whole or in part in any form or medium without express writtern permission of moneycontrol.com is 
+# prohibited."""
+# preprocess_data()
+# find_subsector_company_sentiment_json_format(document)
+
