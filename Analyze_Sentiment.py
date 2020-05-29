@@ -319,7 +319,8 @@ def make_news_output_format(subsector_to_polarity, company_to_polarity, df):
     news_output['Params'] = list()
     for key, value in subsector_to_polarity.items():
         item_type = 'Commodity'
-        item_symbol = df[df['cleaned_subsectors'] == key]['Symbol'].values[0]
+        #item_symbol = df[df['cleaned_subsectors'] == key]['Symbol'].values[0]
+        item_symbol = key
         item_sentiment = value
         temp = dict()
         temp['label'] =item_type
@@ -328,7 +329,7 @@ def make_news_output_format(subsector_to_polarity, company_to_polarity, df):
         news_output['Params'].append(temp)
     
     for key, value in company_to_polarity.items():
-        item_type = 'Organization'
+        item_type = 'Organisation'
         item_symbol = df[df['cleaned_companies'] == key]['Symbol'].values[0] + '.NS'
         item_sentiment = value
         temp = dict()
