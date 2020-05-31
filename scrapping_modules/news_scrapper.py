@@ -7,13 +7,13 @@ def extract_article (url):
     try:
         req = requests.get(url) 
     except Exception:
-        'bhai request bhi nahi kiya'
+        'news url request not fetched'
 
     # extract html data using the 'lxml' parser  
     try:
         soup = BeautifulSoup(req.content, 'lxml')
     except Exception:
-        return 'soup bohot chutiya hai'
+        return 'BeautifulSoup not loaded using lxml'
 
     # extract news article
     news_article = ''
@@ -23,7 +23,7 @@ def extract_article (url):
         for para in paras:
             news_article = news_article + para.text
     except Exception:
-        return 'Jinit ki maa ki ...'
+        return 'Error in extracting paragraph tags from text'
 
     print(news_article)
     return news_article
